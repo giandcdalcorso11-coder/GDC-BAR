@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SelfTap · Interfaccia spillatrice (prototipo)</title>
+<style>
+  :root{--bg:#1b1410;--card:#2e231b;--amber:#f2a900;--foam:#f3e7d0;--green:#7fb069;--red:#d9534f;--mute:#8a7a6b;}
+  *{box-sizing:border-box}
+  body{margin:0;background:#0e0a08;color:#fff;font-family:Calibri,Arial,sans-serif;min-height:100vh;display:flex;gap:32px;align-items:center;justify-content:center;flex-wrap:wrap;padding:24px}
+  /* schermo 7" 800x480 */
+  .screen{width:800px;height:480px;background:var(--bg);border:10px solid #3a2e25;border-radius:22px;position:relative;overflow:hidden;box-shadow:0 20px 60px #000a}
+  .view{position:absolute;inset:0;display:none;flex-direction:column;padding:24px 32px}
+  .view.on{display:flex}
+  .top{display:flex;justify-content:space-between;align-items:center;color:var(--mute);font-size:18px}
+  .beer{font-family:Cambria,Georgia,serif;color:var(--amber);font-size:30px;font-weight:700}
+  .beer small{display:block;font-family:Calibri,Arial;color:var(--mute);font-size:16px;font-weight:400}
+  .center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .big{font-family:Cambria,Georgia,serif;font-size:110px;font-weight:700;line-height:1}
+  .big span{font-size:48px;color:var(--amber);margin-left:8px}
+  .msg{font-size:28px;margin-top:10px}
+  .sub{font-size:20px;color:var(--mute);margin-top:8px}
+  .nfc{width:150px;height:150px;border-radius:50%;border:6px solid var(--amber);display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:20px}
+  .nfc::before,.nfc::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:3px solid var(--amber);animation:pulse 2s infinite}
+  .nfc::after{animation-delay:1s}
+  @keyframes pulse{from{transform:scale(1);opacity:.7}to{transform:scale(1.5);opacity:0}}
+  .nfc svg{width:70px;height:70px;fill:var(--amber)}
+  .bar{height:22px;border-radius:11px;background:#3d3128;overflow:hidden;width:100%;margin-top:18px}
+  .bar i{display:block;height:100%;background:var(--amber);width:0;transition:width .15s}
+  .pill{display:inline-block;padding:8px 20px;border-radius:30px;background:var(--card);font-size:20px}
+  .ok{color:var(--green)} .ko{color:var(--red)}
+  .btn{background:var(--amber);color:#1b1410;border:0;border-radius:14px;font-size:22px;font-weight:700;padding:12px 28px;cursor:pointer;font-family:inherit}
+  .btn.ghost{background:var(--card);color:#fff}
+  .led{position:absolute;bottom:0;left:0;right:0;height:10px;background:var(--mute);transition:background .3s}
+  .led.green{background:var(--green)} .led.amber{background:var(--amber)} .led.red{background:var(--red)}
+  /* pannello demo */
+  .demo{width:300px;background:#1b1410;border:1px solid #3a2e25;border-radius:16px;padding:20px}
+  .demo h2{font-family:Cambria,Georgia,serif;color:var(--amber);margin:0 0 4px;font-size:22px}
+  .demo p{color:var(--mute);font-size:14px;margin:0 0 14px}
+  .demo button{display:block;width:100%;margin:8px 0;padding:12px;border-radius:10px;border:1px solid #3a2e25;background:var(--card);color:#fff;font-size:15px;cursor:pointer;font-family:inherit}
+  .demo button:hover{border-color:var(--amber)}
+  .demo select{width:100%;padding:10px;border-radius:10px;background:var(--card);color:#fff;border:1px solid #3a2e25;font-size:15px;margin-bottom:6px}
+  .demo hr{border:0;border-top:1px solid #3a2e25;margin:14px 0}
+  .state{font-size:13px;color:var(--mute)}
+</style>
+</head>
+<body>
+
+<div>
+  <div class="screen" id="screen">
+    <!-- IDLE -->
+    <div class="view on" id="v-idle">
+      <div class="top"><div class="beer" id="beerName1">IPA · Luppolo Rosso<small>6,2% · amara, agrumata</small></div><div>Via 3 · 13,00 €/L</div></div>
+      <div class="center">
+        <div class="nfc"><svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2zm2 3v10h2V7H6zm4 2v6h2V9h-2zm4-1v8h2V8h-2z"/></svg></div>
+        <div class="msg">Avvicina il braccialetto per iniziare</div>
+        <div class="sub">Poi tieni il bicchiere sotto il rubinetto</div>
+      </div>
+    </div>
+
+    <!-- AUTORIZZATO / EROGAZIONE -->
+    <div class="view" id="v-pour">
+      <div class="top"><div class="beer" id="beerName2">IPA · Luppolo Rosso<small id="who">Ciao, Giulia</small></div><div class="pill ok">● Pronto</div></div>
+      <div class="center">
+        <div class="big"><b id="ml">0,00</b><span>L</span></div>
+        <div class="bar"><i id="barfill"></i></div>
+        <div class="sub" id="pourHint">Premi la leva per spillare</div>
+        <div class="msg" id="priceLine" style="display:none"></div>
+      </div>
+      <div style="display:flex;gap:16px;justify-content:center">
+        <button class="btn ghost" id="showPrice">Mostra importo</button>
+        <button class="btn" id="finish">Avvicina per terminare</button>
+      </div>
+    </div>
+
+    <!-- RIEPILOGO -->
+    <div class="view" id="v-done">
+      <div class="top"><div class="beer">Spillata chiusa</div><div class="pill ok">✓ Registrata</div></div>
+      <div class="center">
+        <div class="sub">Hai spillato</div>
+        <div class="big"><b id="doneMl">0,00</b><span>L</span></div>
+        <div class="msg">Totale serata: <b id="doneTot">0,00 L</b></div>
+        <div class="sub">L'importo lo trovi in cassa a fine serata. Buona bevuta!</div>
+      </div>
+    </div>
+
+    <!-- BLOCCATO -->
+    <div class="view" id="v-block">
+      <div class="top"><div class="beer" style="color:var(--red)">Non disponibile</div></div>
+      <div class="center">
+        <div class="msg ko" id="blockMsg">Braccialetto non attivo</div>
+        <div class="sub" id="blockSub">Rivolgiti all'addetto di sala</div>
+      </div>
+    </div>
+
+    <!-- FUORI SERVIZIO -->
+    <div class="view" id="v-off">
+      <div class="top"><div class="beer" style="color:var(--mute)">Fuori servizio</div></div>
+      <div class="center"><div class="msg">Fusto in cambio</div><div class="sub">Prova un'altra spillatrice</div></div>
+    </div>
+    <div class="led" id="led"></div>
+  </div>
+</div>
+
+<div class="demo">
+  <h2>Pannello demo</h2>
+  <p>Simula quello che farebbe il cliente. Il vero hardware avrà solo schermo, lettore NFC e leva/valvola.</p>
+  <select id="beerSel">
+    <option value="0">Via 3 · IPA Luppolo Rosso</option>
+    <option value="1">Via 4 · Weiss Chiara</option>
+    <option value="2">Via 5 · Stout Notte</option>
+  </select>
+  <button id="d-tap">1 · Avvicina braccialetto (inizia)</button>
+  <button id="d-flow">2 · Tieni premuto per spillare</button>
+  <button id="d-end">3 · Riavvicina braccialetto (termina)</button>
+  <hr>
+  <button id="d-block">Braccialetto bloccato dal bar</button>
+  <button id="d-minor">Braccialetto non attivato</button>
+  <button id="d-off">Spillatrice fuori servizio</button>
+  <button id="d-reset">Torna a riposo</button>
+  <hr>
+  <div class="state" id="state">Stato: riposo</div>
+</div>
+
+<script>
+const BEERS=[{n:"IPA · Luppolo Rosso",d:"6,2% · amara, agrumata",p:13},{n:"Weiss · Chiara",d:"5,0% · frumento, banana",p:12},{n:"Stout · Notte",d:"6,8% · caffè, cioccolato",p:14}];
+const $=id=>document.getElementById(id);
+let st="idle",ml=0,total=1.2,timer=null,showP=false;
+const fmt=v=>v.toFixed(2).replace(".",",");
+function show(v,led){document.querySelectorAll(".view").forEach(e=>e.classList.remove("on"));$("v-"+v).classList.add("on");$("led").className="led "+(led||"");$("state").textContent="Stato: "+v;st=v}
+function beer(){return BEERS[+$("beerSel").value]}
+function setBeer(){const b=beer();for(const id of["beerName1","beerName2"]){$(id).firstChild.textContent=b.n}
+  $("beerName1").querySelector("small").textContent=b.d;
+  document.querySelector("#v-idle .top > div:last-child").textContent="Via "+(+$("beerSel").value+3)+" · "+b.p.toFixed(2).replace(".",",")+" €/L"}
+$("beerSel").onchange=()=>{setBeer();show("idle")};
+$("d-tap").onclick=()=>{if(st==="idle"){ml=0;showP=false;$("priceLine").style.display="none";$("ml").textContent="0,00";$("barfill").style.width="0";$("pourHint").textContent="Premi la leva per spillare";show("pour","green")}};
+const start=()=>{if(st!=="pour")return;$("led").className="led amber";timer=setInterval(()=>{ml+=0.012;$("ml").textContent=fmt(ml);$("barfill").style.width=Math.min(ml/0.5*100,100)+"%";updPrice()},100)};
+const stop=()=>{clearInterval(timer);if(st==="pour")$("led").className="led green"};
+function updPrice(){if(showP){$("priceLine").style.display="block";$("priceLine").textContent="≈ "+fmt(ml*beer().p)+" € per questa spillata"}}
+const flow=$("d-flow");["mousedown","touchstart"].forEach(e=>flow.addEventListener(e,start));["mouseup","mouseleave","touchend"].forEach(e=>flow.addEventListener(e,stop));
+$("showPrice").onclick=()=>{showP=true;updPrice();$("priceLine").style.display="block";$("priceLine").textContent="≈ "+fmt(ml*beer().p)+" € per questa spillata"};
+function end(){if(st!=="pour")return;stop();total+=ml;$("doneMl").textContent=fmt(ml);$("doneTot").textContent=fmt(total)+" L";show("done","green");setTimeout(()=>{if(st==="done")show("idle")},5000)}
+$("d-end").onclick=end;$("finish").onclick=end;
+$("d-block").onclick=()=>{stop();$("blockMsg").textContent="Braccialetto bloccato";$("blockSub").textContent="Rivolgiti all'addetto di sala";show("block","red");setTimeout(()=>show("idle"),4000)};
+$("d-minor").onclick=()=>{stop();$("blockMsg").textContent="Braccialetto non attivo";$("blockSub").textContent="Passa prima dalla cassa per attivarlo";show("block","red");setTimeout(()=>show("idle"),4000)};
+$("d-off").onclick=()=>{stop();show("off","red")};
+$("d-reset").onclick=()=>{stop();show("idle")};
+setBeer();
+</script>
+</body>
+</html>

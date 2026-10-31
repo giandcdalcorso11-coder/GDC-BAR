@@ -6,6 +6,7 @@ Birreria self-service: i clienti si spillano la birra da soli con un braccialett
 
 | Cartella | Cosa c'è |
 |---|---|
+| `docs/00-documento-di-progetto.md` (+ `.docx`) | **Documento unico** che spiega idea e progetto |
 | `docs/01-concept.md` | Visione, esperienza cliente, differenziazione |
 | `docs/02-decisioni.md` | Registro delle decisioni prese e di quelle aperte |
 | `docs/03-hardware-spillatrice.md` | Composizione meccanica ed elettronica della spillatrice |

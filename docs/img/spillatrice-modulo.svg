@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" font-family="Calibri,Arial,sans-serif" font-size="14">
+<rect width="900" height="560" fill="#1b1410"/>
+<text x="20" y="30" fill="#f2a900" font-size="20" font-weight="700" font-family="Cambria,Georgia,serif">Modulo isola: vista laterale e quote (mm) - concept</text>
+<line x1="40" y1="520" x2="860" y2="520" stroke="#8a7a6b" stroke-width="3"/><text x="780" y="540" fill="#8a7a6b" stroke="none">pavimento</text>
+<!-- basamento isola -->
+<rect x="150" y="235" width="320" height="285" fill="#2e231b" stroke="#8a7a6b"/>
+<text x="165" y="340" fill="#8a7a6b">Basamento isola: scarico</text><text x="165" y="358" fill="#8a7a6b">gocce e raccolta rifiuti</text>
+<!-- piano e vaschetta -->
+<rect x="130" y="225" width="340" height="10" fill="#c8c8c8"/><text x="140" y="247" fill="#fff" font-size="13">Vaschetta + griglia (950)</text>
+<!-- colonna -->
+<rect x="330" y="55" width="80" height="170" fill="#3a2e25" stroke="#f2a900" stroke-width="2"/>
+<text x="345" y="75" fill="#f2a900">Colonna</text>
+<!-- display -->
+<rect x="318" y="86" width="14" height="56" fill="#f3e7d0" stroke="#fff"/><text x="200" y="104" fill="#fff">Display 7" (1400)</text><path d="M290 100H318" stroke="#fff"/>
+<rect x="318" y="118" width="14" height="22" fill="#f2a900"/>
+<!-- nfc -->
+<circle cx="325" cy="130" r="0"/><text x="200" y="140" fill="#f2a900">Zona NFC (1300)</text><path d="M290 136H318" stroke="#f2a900"/>
+<!-- spout -->
+<path d="M330 160H300V176" stroke="#c8c8c8" stroke-width="10" fill="none"/><text x="195" y="172" fill="#fff">Becco (1200)</text><path d="M255 172H296" stroke="#fff"/>
+<!-- glass -->
+<path d="M262 184H298L292 225H268Z" fill="#f2a900" opacity=".8"/><rect x="262" y="184" width="36" height="10" fill="#f3e7d0"/>
+<text x="215" y="224" fill="#fff" font-size="12">bicchiere</text>
+<!-- LED -->
+<rect x="318" y="60" width="14" height="22" fill="#7fb069"/><text x="205" y="68" fill="#7fb069">LED stato (1500)</text><path d="M285 64H318" stroke="#7fb069"/>
+<!-- vano tecnico -->
+<rect x="350" y="150" width="50" height="70" fill="none" stroke="#7fb069" stroke-dasharray="4 3"/><text x="420" y="140" fill="#7fb069">Vano tecnico</text><text x="420" y="158" fill="#7fb069" font-size="12">controller, driver, PoE</text><path d="M420 150L400 170" stroke="#7fb069"/>
+<rect x="350" y="80" width="50" height="60" fill="none" stroke="#f2a900" stroke-dasharray="4 3"/><text x="420" y="95" fill="#f2a900">Linea birra,</text><text x="420" y="113" fill="#f2a900">flussimetro, valvola</text><path d="M420 100L400 105" stroke="#f2a900"/>
+<!-- quote -->
+<g stroke="#8a7a6b" fill="#8a7a6b" stroke-width="1"><line x1="600" y1="520" x2="600" y2="55"/><line x1="590" y1="520" x2="610" y2="520"/><line x1="590" y1="55" x2="610" y2="55"/>
+<text x="615" y="290">Altezza totale colonna ≈ 1550</text>
+<line x1="540" y1="225" x2="540" y2="184"/><text x="550" y="209" font-size="13">≈ 250 libero sotto il becco</text>
+<line x1="500" y1="520" x2="500" y2="225"/><text x="510" y="385" font-size="13">950 piano</text></g>
+<g fill="#fff"><text x="40" y="500" font-size="13">Profondità colonna ≈ 250  ·  larghezza per via ≈ 250-300  ·  passo tra le vie 300 (isola da 8 vie ≈ 2,4 m)</text>
+<text x="40" y="550" font-size="13" fill="#8a7a6b">Quote orientative: da verificare con ergonomia, altezza dei bicchieri e prove su prototipo.</text></g>
+</svg>

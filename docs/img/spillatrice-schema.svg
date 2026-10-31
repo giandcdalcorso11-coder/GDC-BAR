@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470" font-family="Calibri,Arial,sans-serif" font-size="14">
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L10 5L0 10z" fill="#f2a900"/></marker>
+<marker id="g" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L10 5L0 10z" fill="#6ba3be"/></marker>
+<marker id="e" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L10 5L0 10z" fill="#7fb069"/></marker></defs>
+<rect width="1000" height="470" fill="#1b1410"/>
+<text x="20" y="30" fill="#f2a900" font-size="20" font-weight="700" font-family="Cambria,Georgia,serif">Schema di una via: idraulica (ambra), gas (azzurro), segnali (verde)</text>
+<!-- zona fredda -->
+<rect x="15" y="50" width="330" height="200" rx="10" fill="#241a14" stroke="#6ba3be" stroke-dasharray="6 4"/>
+<text x="25" y="70" fill="#6ba3be">CELLA FRIGO 2-4 °C</text>
+<g fill="#2e231b" stroke="#f2a900" stroke-width="2">
+<rect x="30" y="120" width="80" height="90" rx="8"/><rect x="140" y="130" width="80" height="60" rx="8"/><rect x="250" y="130" width="80" height="60" rx="8"/></g>
+<g fill="#fff" text-anchor="middle"><text x="70" y="160">FUSTO</text><text x="70" y="180" font-size="12">20-30 L</text>
+<text x="180" y="155">Coupler</text><text x="180" y="172" font-size="12">+ sensore</text><text x="290" y="155">Valvola</text><text x="290" y="172" font-size="12">di gruppo</text></g>
+<!-- gas -->
+<rect x="30" y="270" width="110" height="60" rx="8" fill="#2e231b" stroke="#6ba3be" stroke-width="2"/><text x="85" y="305" fill="#fff" text-anchor="middle">Bombola CO₂</text>
+<rect x="190" y="270" width="140" height="60" rx="8" fill="#2e231b" stroke="#6ba3be" stroke-width="2"/><text x="260" y="297" fill="#fff" text-anchor="middle">Riduttore di via</text><text x="260" y="315" fill="#fff" text-anchor="middle" font-size="12">0-4 bar + valvola sicurezza</text>
+<path d="M140 300H190" stroke="#6ba3be" stroke-width="3" marker-end="url(#g)"/>
+<path d="M260 270V240H180V192" stroke="#6ba3be" stroke-width="3" fill="none" marker-end="url(#g)"/>
+<!-- birra -->
+<path d="M110 160H140M220 160H250M330 160H400" stroke="#f2a900" stroke-width="4" fill="none" marker-end="url(#a)"/>
+<!-- colonna -->
+<rect x="400" y="50" width="590" height="200" rx="10" fill="#241a14" stroke="#f2a900" stroke-dasharray="6 4"/>
+<text x="410" y="70" fill="#f2a900">COLONNA DI EROGAZIONE (sala)</text>
+<g fill="#2e231b" stroke="#f2a900" stroke-width="2">
+<rect x="410" y="125" width="100" height="70" rx="8"/><rect x="540" y="125" width="100" height="70" rx="8"/><rect x="670" y="125" width="110" height="70" rx="8"/><rect x="810" y="125" width="90" height="70" rx="8"/></g>
+<g fill="#fff" text-anchor="middle"><text x="460" y="155">Raffreddamento</text><text x="460" y="173" font-size="12">linea 2-4 °C</text>
+<text x="590" y="155">Flussimetro</text><text x="590" y="173" font-size="12">impulsi</text>
+<text x="725" y="155">Elettrovalvola</text><text x="725" y="173" font-size="12">NC 24 V</text>
+<text x="855" y="155">Rubinetto</text><text x="855" y="173" font-size="12">compensatore</text></g>
+<path d="M510 160H540M640 160H670M780 160H810" stroke="#f2a900" stroke-width="4" marker-end="url(#a)"/>
+<path d="M855 195V232" stroke="#f2a900" stroke-width="4" marker-end="url(#a)"/>
+<text x="880" y="228" fill="#f2a900">bicchiere</text>
+<!-- elettronica -->
+<rect x="400" y="290" width="590" height="160" rx="10" fill="#241a14" stroke="#7fb069" stroke-dasharray="6 4"/>
+<text x="410" y="310" fill="#7fb069">ELETTRONICA DI VIA (nel vano tecnico)</text>
+<rect x="590" y="330" width="170" height="80" rx="8" fill="#2e231b" stroke="#7fb069" stroke-width="2"/><text x="675" y="363" fill="#fff" text-anchor="middle">Controller di via</text><text x="675" y="383" fill="#fff" text-anchor="middle" font-size="12">logica + coda offline</text>
+<g fill="#2e231b" stroke="#7fb069" stroke-width="2"><rect x="415" y="325" width="120" height="40" rx="8"/><rect x="415" y="375" width="120" height="40" rx="8"/><rect x="810" y="320" width="165" height="36" rx="8"/><rect x="810" y="362" width="165" height="36" rx="8"/><rect x="810" y="404" width="165" height="36" rx="8"/></g>
+<g fill="#fff" font-size="13"><text x="475" y="350" text-anchor="middle">Lettore NFC</text><text x="475" y="400" text-anchor="middle">Display + LED</text>
+<text x="892" y="343" text-anchor="middle">Driver valvola 24 V</text><text x="892" y="385" text-anchor="middle">Sensore bicchiere</text><text x="892" y="427" text-anchor="middle">Alim. PoE + 24 V</text></g>
+<path d="M535 345H590M535 395H590M760 355H810M760 380H810M760 400H810" stroke="#7fb069" stroke-width="2" marker-end="url(#e)"/>
+<path d="M590 195V300H675V330" stroke="#7fb069" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
+<path d="M892 320V260H725V195" stroke="#7fb069" stroke-width="2" fill="none" stroke-dasharray="4 3" marker-end="url(#e)"/>
+<text x="20" y="460" fill="#8a7a6b" font-size="12">Linee tratteggiate verdi: impulsi dal flussimetro verso il controller, comando dal controller verso l'elettrovalvola. Rete: cavo Ethernet PoE verso lo switch e il server del bar.</text>
+</svg>

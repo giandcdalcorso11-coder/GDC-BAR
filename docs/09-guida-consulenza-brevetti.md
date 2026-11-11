@@ -35,7 +35,7 @@ Per ora il primo contatto è il **consulente in brevetti**, con competenze di me
 
 ### 3.1 Non divulgare
 - La novità si valuta rispetto a **tutto ciò che è accessibile al pubblico, in Italia o all'estero, prima del deposito**; anche una conferenza, un catalogo o una pubblicazione possono farla perdere [F: [UIBM](https://uibm.mise.gov.it/index.php/it/brevetti/brevetto-per-invenzione-industriale/requisiti-di-brevettabilita)].
-- **Non ho trovato una fonte sul periodo di grazia** per divulgazioni precedenti il deposito [?]: non contarci. Il repository su GitHub è privato? Se è pubblico o condiviso, va controllato subito.
+- **Non ho trovato una fonte sul periodo di grazia** per divulgazioni precedenti il deposito [?]: non contarci. Controlla subito se il repository su GitHub è privato: se è pubblico o condiviso, il contenuto è già potenzialmente divulgato.
 - Il consulente è vincolato al **segreto professionale** (art. 206 CPI) [F: [guida CCIAA Emilia-Romagna](https://www.ucer.camcom.it/progetto-network/aree-gruppi/brevetti-e-marchi/guida-brevetto-invenzione-uffici-brevetti-1/@@download/file)]. Per terzi (bar, fornitori, sviluppatori, investitori) serve un **NDA firmato prima** [F: presentazione Jacobacci].
 - Il pitch deck, i prototipi e i documenti nel repository **non vanno mostrati a nessuno** prima della decisione sulla strategia di protezione.
 
@@ -54,7 +54,7 @@ Un documento di 2-4 pagine, senza gergo di marketing:
 - Parti dai documenti già elencati in `08` e annota i **10 più vicini**, con una frase su cosa dicono. Non sostituisce una ricerca professionale, ma abbassa i costi.
 
 ### 3.4 Chiarire titolarità e persone
-- **Chi sono gli inventori?** Solo tu? Chi ha contribuito alle idee tecniche (anche me/uno strumento software non è inventore: lo è chi ha concepito l'idea; da chiedere al consulente come trattare il contributo di strumenti di IA).
+- **Chi sono gli inventori?** Solo tu? Chi ha contribuito alle idee tecniche. L'inventore è una persona fisica; chiedi al consulente come trattare il contributo di strumenti software e di IA usati nello sviluppo.
 - **Chi sarà il titolare del brevetto**: tu come persona o una società? Il passaggio successivo costa e complica. Chiedi al commercialista se conviene costituire prima una società.
 - Se qualcuno (sviluppatore, partner, socio) lavorerà su kit o software, servono **contratti di cessione dei diritti** fin dall'inizio.
 

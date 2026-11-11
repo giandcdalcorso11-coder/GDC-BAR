@@ -16,6 +16,7 @@ Birreria self-service: i clienti si spillano la birra da soli con un braccialett
 | `docs/04-software-architettura.md` | Architettura software, firmware, backend, modello dati, API |
 | `docs/07-ricerca-mercato-e-primo-contatto.md` | Ricerca su Jayson (Pescara), concorrenza, format e punti da verificare |
 | `docs/08-fattibilita-leggi-e-brevetti.md` | Ricerca su leggi, metrologia, brevetti, franchising e domande per i professionisti |
+| `docs/09-guida-consulenza-brevetti.md` | Guida alla consulenza sul brevetto: chi contattare, prerequisiti, passi, costi, domande |
 | `docs/05-normativa-e-rischi.md` | Punti legali/normativi da validare e rischi |
 | `pitch/SelfTap_Pitch_Deck.pptx` | Pitch deck per investitori (bozza v0.1); sorgente in `pitch/build_deck.js` |
 | `ui/spillatrice.html` | Prototipo cliccabile dello schermo della spillatrice |
